@@ -8,7 +8,7 @@ const MovieDetails = () => {
     const [movie, setMovie] = useState(null);
     const [error, setError] = useState(null);
     const { movieId } = useParams();
-    const linkToBack = location.state ?.from ?? '/';
+    const linkToBack = location.state?.from ?? '/';
 
     useEffect(() => {
         const fetchMovies = async () => {
