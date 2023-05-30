@@ -31,7 +31,7 @@ const [loading, setLoading] = useState(false);
       {cast.map(actor => {
         if (actor.profile_path) {
             poster = `https://image.tmdb.org/t/p/w200/${actor.profile_path}`;
-            // console.log(poster);
+            
         } else {
           poster = `https://st.depositphotos.com/2101611/4338/v/600/depositphotos_43381243-stock-illustration-male-avatar-profile-picture.jpg`;
         }
