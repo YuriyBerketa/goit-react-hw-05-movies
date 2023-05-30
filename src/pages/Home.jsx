@@ -5,6 +5,7 @@ import { Link } from "react-router-dom"
 import defImg from '../img/notPictyre.jpg'
 
 
+
 const Home = () => {
     const [trendings, setTrendings] = useState([]);
     console.log(trendings);
@@ -22,17 +23,6 @@ const Home = () => {
     },[])
 
     return (
-
-        // trendings.map(movie => {
-        //     return (
-        //     <Link key={movie.id} to={`${movie.id}`}>
-        //         <div key={movie.id} to={`/movies/${movie.id}`}></div>
-        //             <img src={movie.poster_path} alt={movie.title} />
-        //             <p>{ movie.title}</p>
-        //         </Link>
- 
-        // )}
-        // )
 
         <>
             <h1>Trending movies</h1>
