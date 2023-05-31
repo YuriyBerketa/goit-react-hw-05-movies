@@ -1,14 +1,20 @@
 import { fetchTrendingApi } from "api/fetchApi";
 import { useEffect } from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom"
-import defImg from '../img/notPictyre.jpg'
 
+import defImg from '../img/notPictyre.jpg';
+import {
+  MoviesList,
+  LinkItem,
+  MovieTitle,
+  TrendingTitle,
+} from '../pages/Page.styled';
+import Container from "components/Container/Container";
 
 
 const Home = () => {
     const [trendings, setTrendings] = useState([]);
-    console.log(trendings);
+    
     useEffect(() => {
         async function moviesTrendFetch() {
             try {
@@ -16,7 +22,7 @@ const Home = () => {
                 setTrendings([...data.results]);
                 
             } catch (error) {
-                console.log(error)
+               
             }
         }
         moviesTrendFetch();
@@ -25,23 +31,25 @@ const Home = () => {
     return (
 
         <>
-            <h1>Trending movies</h1>
-            {trendings && (<div>{trendings.map(({poster_path, id, title}) => {
+            <Container>
+            <TrendingTitle>Trending movies</TrendingTitle>
+            {trendings && (<MoviesList>{trendings.map(({poster_path, id, title}) => {
                 let poster;
                 if (poster_path) {
                     poster = `https://image.tmdb.org/t/p/w400${poster_path}`;
-                    // console.log(poster);
+              
                 } else {
                     poster = defImg;
-                    // console.log(poster);
+                    
                 }
 
-                return (<Link key={id} to={`/movies/${id}`}>
+                return (<LinkItem key={id} to={`/movies/${id}`}>
                     <img src={poster} width='400' alt={title} />
-                    <h2>{ title}</h2>
-                </Link>)
+                    <MovieTitle>{ title}</MovieTitle>
+                </LinkItem>)
 
-            })}</div>)}
+            })}</MoviesList>)}
+                </Container>
         </>
 
 

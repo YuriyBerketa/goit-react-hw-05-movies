@@ -1,7 +1,17 @@
 import { fetchSearchApi } from 'api/fetchApi';
 import { useEffect, useState } from 'react';
-import { Link, useLocation, useSearchParams } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 import defImg from '../img/notPictyre.jpg';
+import {
+  MoviesForm,
+  MoviesInput,
+  MoviesList,
+  MoviesSearchButton,
+  MovieTitle,
+  LinkItem,
+} from '../pages/Page.styled';
+import Container from "components/Container/Container";
+
 
 const Movies = () => {
   const [movies, setMovies] = useState([]);
@@ -45,15 +55,17 @@ const Movies = () => {
 
   return (
     <>
-      <form onSubmit={onSubmit}>
-        <input
+      <Container>
+      <MoviesForm onSubmit={onSubmit}>
+        <MoviesInput
           tupe="text"
           value={input}
           name="input"
           onChange={e => onChangeInput(e.target.value.toLowerCase())}
         />
-        <button tupe="submit">Search</button>
-      </form>
+        <MoviesSearchButton tupe="submit">Search</MoviesSearchButton>
+      </MoviesForm>
+      <MoviesList>
       {movies.map(({ poster_path, id, title }) => {
         let poster;
         if (poster_path) {
@@ -62,12 +74,14 @@ const Movies = () => {
           poster = defImg;
         }
         return (
-          <Link key={id} to={`${id}`} state={{ from: location }}>
+          <LinkItem key={id} to={`${id}`} state={{ from: location }}>
             <img src={poster} width="400" alt={title} />
-            <h2>{title}</h2>
-          </Link>
+            <MovieTitle>{title}</MovieTitle>
+          </LinkItem>
         );
       })}
+        </MoviesList>
+        </Container>
     </>
   );
 };

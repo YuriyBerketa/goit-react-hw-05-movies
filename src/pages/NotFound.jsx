@@ -1,11 +1,11 @@
-const { Link } = require("react-router-dom")
+import { NotFoundBlock, NotFoundText, NotFoundLink } from '../pages/Page.styled';
 
 const NotFound = () => {
     return (
-        <div>
-            <h3>Вибачте, такої сторінки не існує</h3>
-            <Link to='/'>Повернутися на готовну сторінку</Link>
-        </div>
+        <NotFoundBlock>
+            <NotFoundText>Вибачте, такої сторінки не існує</NotFoundText>
+            <NotFoundLink to='/'>Повернутися на готовну сторінку</NotFoundLink>
+        </NotFoundBlock>
     )
 }
 

@@ -1,6 +1,7 @@
 import { fetchCast } from "api/fetchApi";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { ActorsCard, ActorsList, ActorsName } from './Cast.styled';
 
 const Cast = () => {
 const [loading, setLoading] = useState(false);
@@ -8,7 +9,8 @@ const [loading, setLoading] = useState(false);
     const [actors, setActors] = useState();
 
     useEffect(() => {
-        setLoading(true);
+      setLoading(true);
+      
         fetchCast(Number(movieId))
             .then(setActors)
             .catch(error => console.log(error))
@@ -24,7 +26,7 @@ const [loading, setLoading] = useState(false);
     const { cast } = actors;
 
   return (
-    <ul>
+    <ActorsList>
       {loading && (
         <div>Завантажуємо...</div>
       )}
@@ -36,13 +38,13 @@ const [loading, setLoading] = useState(false);
           poster = `https://st.depositphotos.com/2101611/4338/v/600/depositphotos_43381243-stock-illustration-male-avatar-profile-picture.jpg`;
         }
         return (
-          <li key={actor.id}>
+          <ActorsCard key={actor.id}>
             <img src={poster} width="200" height="300" alt={actor.name} />
-            <p>{actor.name}</p>
-          </li>
+            <ActorsName>{actor.name}</ActorsName>
+          </ActorsCard>
         );
       })}
-    </ul>
+    </ActorsList>
 
   );
 };

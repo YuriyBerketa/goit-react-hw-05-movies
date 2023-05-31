@@ -1,4 +1,16 @@
 import defImg from '../../img/notPictyre.jpg'
+import {
+  MovieDetailsImg,
+  MovieDetailsAbout,
+  MovieDetailsTitle,
+  MovieDetailsScore,
+  MovieDetailsOverview,
+  MovieDetailsOverviewText,
+  MovieDetailsGenres,
+  MovieDetailsGenresText,
+  MovieDetailsCard,
+} from './MovieCards.styled';
+import PropTypes from 'prop-types';
 
 const MovieCard = ({ movie }) => {
     const { overview, title, release_date, genres, vote_average} = movie;
@@ -9,24 +21,41 @@ const MovieCard = ({ movie }) => {
                     poster = defImg;
     }
     return(
-        <div>
-      <img src={poster} alt={title} />
-      <div>
-        <h2>
+        <MovieDetailsCard>
+      <MovieDetailsImg src={poster} alt={title} />
+      <MovieDetailsAbout>
+        <MovieDetailsTitle>
           "{title}"({new Date(release_date).getFullYear()})
-        </h2>
-        <p>
+        </MovieDetailsTitle>
+        <MovieDetailsScore>
           User Score: {Math.round(vote_average * 10)}%
-        </p>
-        <h3>Overview</h3>
-        <p>{overview}</p>
-        <h3>Genres</h3>
-        <p>
+        </MovieDetailsScore>
+        <MovieDetailsOverview>Overview</MovieDetailsOverview>
+        <MovieDetailsOverviewText>{overview}</MovieDetailsOverviewText>
+        <MovieDetailsGenres>Genres</MovieDetailsGenres>
+        <MovieDetailsGenresText>
           {genres.map(genre => genre.name).join(', ')}
-        </p>
-      </div>
-    </div>
+        </MovieDetailsGenresText>
+      </MovieDetailsAbout>
+    </MovieDetailsCard>
     )
 }
 
 export default MovieCard;
+
+MovieCard.propTypes = {
+  movie: PropTypes.shape({
+    poster_path: PropTypes.string,
+    name: PropTypes.string,
+    title: PropTypes.string,
+    release_date: PropTypes.string,
+    vote_average: PropTypes.number,
+    overview: PropTypes.string,
+    genres: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number,
+        name: PropTypes.string,
+      })
+    ),
+  }),
+};

@@ -1,11 +1,11 @@
-const { NavLink } = require("react-router-dom")
+import { NavList, NavItem } from "./AppMenu.styled";
 
 const AppMenu = () => {
     return (
-        <nav>
-            <NavLink to='/'>Home</NavLink>
-            <NavLink to='/movies'>Movies</NavLink>
-        </nav>
+        <NavList>
+            <NavItem to='/'>Home</NavItem>
+            <NavItem to='/movies'>Movies</NavItem>
+        </NavList>
     );
 }
 

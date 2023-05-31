@@ -1,7 +1,16 @@
 import { fetchMovieDetails } from "api/fetchApi";
 import MovieCard from "components/MovieCards/MovieCards";
 import { Suspense, useEffect, useState } from "react";
-import { Link, NavLink, Outlet, useLocation, useParams } from "react-router-dom";
+import { Outlet, useLocation, useParams } from "react-router-dom";
+import {
+  MovieDetailsAdditional,
+  MovieDetailsAdditionalTitle,
+  NavItem,
+  LinkButton,
+  LinkBox,
+} from '../pages/Page.styled';
+import Container from "components/Container/Container";
+
 
 const MovieDetails = () => {
     const location = useLocation();
@@ -24,30 +33,32 @@ const MovieDetails = () => {
 
     return (
         <>
+            <Container>
             <>
-                <div>
+                <LinkBox>
                     {' '}
-                    <Link to={linkToBack}>Back to all movies</Link>
-                </div>
+                    <LinkButton to={linkToBack}>Back to all movies</LinkButton>
+                </LinkBox>
                 {error && <div>Something wrong</div>}
                 {movie && (
                     <>
                         <MovieCard movie={movie} />
 
-                        <div>
-                            <h3>
+                        <MovieDetailsAdditional>
+                            <MovieDetailsAdditionalTitle>
                                 Additiona information
-                            </h3>
-                            <NavLink to={'cast'} state={location.state}>
+                            </MovieDetailsAdditionalTitle>
+                            <NavItem to={'cast'} state={location.state}>
                                 Cast
-                            </NavLink>
-                            <NavLink to={'reviews'} state={location.state}>
+                            </NavItem>
+                            <NavItem to={'reviews'} state={location.state}>
                                 Reviews
-                            </NavLink>
-                        </div>
+                            </NavItem>
+                        </MovieDetailsAdditional>
                     </>
                 )}
-            </>
+                </>
+                </Container>
             <Suspense fallback={null}>
                 <Outlet />
             </Suspense>

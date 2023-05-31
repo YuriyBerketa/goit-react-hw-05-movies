@@ -1,6 +1,7 @@
 import { fetchReview } from "api/fetchApi";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { ReviewsError } from './Review.styled';
 
 const Reviews = () => {
     const { movieId } = useParams();
@@ -11,7 +12,7 @@ const Reviews = () => {
   }, [movieId]);
 
   if (reviews < 1) {
-    return <p>Дуже сумно, але ще не має відгуків(</p>;
+    return <ReviewsError>Дуже сумно, але ще не має відгуків(</ReviewsError>;
   }
 
   return (
